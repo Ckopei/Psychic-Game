@@ -1,0 +1,1 @@
+//Welcome to my javaScript file. I hope you enjoy the comments.

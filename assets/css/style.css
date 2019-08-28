@@ -1,0 +1,11 @@
+topBanner {
+    display: block;
+    height: auto;
+    width: auto;
+    text-align: center;
+    justify-content: center;    
+}
+
+body {
+    background-color: black;
+}
