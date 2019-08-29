@@ -1,11 +1,10 @@
 //Welcome to my javaScript file. I hope you enjoy the comments.
 
 
-//all of my wonderful variables set to 0, for further counting.
+//all of my wonderful variables set, for further counting.
 var wins = 0;
 var losses = 0;
 var guessRemaining = 9;
-var letterCounter = 0;
 //empty array for letters chosen
 var allUserGuesses = []
 //Array of letters the computer can choose from once assigned numbers and set to random.
@@ -15,9 +14,48 @@ var computerLetter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 //var alph = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
 //math.floor to assign numbers to array and choose at random.
-var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
+
+
+
+function addUserLetters() {
+    document.getElementById("letterTracker").textContent = allUserGuesses
+}
+
+//restart function to reset program to how it began.
+var restart = function () {
+    guessRemaining = 9;
+    allUserGuesses = [];
+    var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
+
+}
+
 
 //captures users input and saves it into a variable
 document.onkeyup = function (event) {
     var userGuess = event.key;
+
+    allUserGuesses.push(userGuess);
+    // trackGuessesLeft();
+    addUserLetters();
+
+
+    //if you guess what the computer guesses, adds a win, changes html display. restart guesses.
+    if (userGuess == computerGuess) {
+        wins++;
+        document.getElementById("userWins").textContent = wins;
+        restart()
+    }
+    //if you don't, it takes away a guess. console log was for debugging. takes away a guess, displays it.
+     else if (userGuess != computerGuess) {
+        console.log(allUserGuesses)
+        guessRemaining --;
+        document.getElementById("guessesRemaining").textContent = guessRemaining;
+    }
+    //if guesses hits zero, adds a loss, displays it, restarts guesses and computer guess.
+     if (guessRemaining === 0) {
+        losses++;
+        document.getElementById("lossCounter").textContent = losses;
+        restart()
+    }
 }
