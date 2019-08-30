@@ -13,33 +13,27 @@ var computerLetter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 //Ask instructor how to sub below code for messy array. John slacked it to us.
 //var alph = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
-//math.floor to assign numbers to array and choose at random.
-var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
-
-
 
 function addUserLetters() {
     document.getElementById("letterTracker").textContent = allUserGuesses
 }
 
 //restart function to reset program to how it began.
-var restart = function () {
+function restart() {
     guessRemaining = 9;
-    allUserGuesses = [];
     var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
-
+    allUserGuesses = [];  
 }
 
 
 //captures users input and saves it into a variable
 document.onkeyup = function (event) {
     var userGuess = event.key;
-
     allUserGuesses.push(userGuess);
-    // trackGuessesLeft();
     addUserLetters();
-
-
+    var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)];
+    console.log(computerGuess);
+    
     //if you guess what the computer guesses, adds a win, changes html display. restart guesses.
     if (userGuess == computerGuess) {
         wins++;
